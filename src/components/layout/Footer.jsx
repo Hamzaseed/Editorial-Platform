@@ -5,11 +5,12 @@ import { fetchSettings } from '../../../app/settings/settingSlice'
 import { AppLink } from '../ui/AppLink'
 import SocialLinksDisplay from '../socialsettings/socialLinksDisplay'
 import ImageWithFallback from '../ui/ImageWithFallback'
+import Icon from '../ui/Icon'
 
 const FOOTER_COLUMNS = [
   { title: 'News', links: [] },
   { title: 'Life', links: [] },
-  { title: 'Company', links: ['About', 'Contact', 'Careers', 'Advertise'] },
+  { title: 'Company', links: ['About', 'Contact', 'Careers', 'Advertise', 'Admin Panel', 'Author Portal'] },
   { title: 'Resources', links: ['Newsletters', 'RSS', 'Terms', 'Privacy'] },
 ]
 
@@ -43,7 +44,7 @@ function Footer() {
     <footer className="mt-20 border-t border-slate-200 bg-[#111111] text-slate-300">
       <div className="container-shell">
         <div className="border-b border-white/10 py-6">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-slate-500">Daily Edition</p>
               <div className="mt-2">
@@ -59,6 +60,26 @@ function Footer() {
                   <h2 className="font-display text-3xl font-bold uppercase tracking-[0.1em] text-white">{brand}</h2>
                 )}
               </div>
+            </div>
+
+            {/* Prominent Admin & Author Panel Buttons */}
+            <div className="flex flex-wrap items-center gap-3">
+              <AppLink
+                to="/author/dashboard"
+                className="group inline-flex items-center gap-2.5 rounded-lg border border-amber-500/40 bg-amber-600/20 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-amber-300 shadow-lg transition-all duration-200 hover:bg-amber-600 hover:text-white hover:shadow-amber-500/30 active:scale-95"
+              >
+                <Icon name="person_edit" className="h-4 w-4 transition group-hover:scale-110" />
+                <span>Author Portal</span>
+                <span className="rounded bg-white/20 px-1.5 py-0.5 text-[9px] font-medium tracking-normal text-white">Direct</span>
+              </AppLink>
+              <AppLink
+                to="/admin/dashboard"
+                className="group inline-flex items-center gap-2.5 rounded-lg border border-primary/50 bg-primary px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition-all duration-200 hover:bg-primary/90 hover:shadow-primary/30 active:scale-95"
+              >
+                <Icon name="dashboard" className="h-4 w-4 transition group-hover:scale-110" />
+                <span>Admin Panel</span>
+                <span className="rounded bg-white/20 px-1.5 py-0.5 text-[9px] font-medium tracking-normal text-white">Direct</span>
+              </AppLink>
             </div>
           </div>
         </div>
@@ -127,9 +148,21 @@ function Footer() {
                       ))
                       : column.links.map((link) => (
                         <li key={link}>
-                          <a href="#" className="transition hover:text-white">
-                            {link}
-                          </a>
+                          {link === 'Admin Panel' ? (
+                            <AppLink to="/admin/dashboard" className="inline-flex items-center gap-1.5 font-bold text-primary transition hover:text-white">
+                              <Icon name="admin_panel_settings" className="h-3.5 w-3.5" />
+                              <span>Admin Panel</span>
+                            </AppLink>
+                          ) : link === 'Author Portal' ? (
+                            <AppLink to="/author/dashboard" className="inline-flex items-center gap-1.5 font-bold text-amber-400 transition hover:text-white">
+                              <Icon name="person_edit" className="h-3.5 w-3.5" />
+                              <span>Author Portal</span>
+                            </AppLink>
+                          ) : (
+                            <a href="#" className="transition hover:text-white">
+                              {link}
+                            </a>
+                          )}
                         </li>
                       ))}
                 </ul>
@@ -140,12 +173,26 @@ function Footer() {
 
         <div className="flex flex-col gap-4 border-t border-white/10 py-6 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
           <p>&copy; {new Date().getFullYear()} {brand}. All Rights Reserved.</p>
-          <div className="flex flex-wrap gap-5">
+          <div className="flex flex-wrap items-center gap-5">
             {['Site Map', 'Accessibility', 'Archived Content', 'Editorial Standards'].map((link) => (
               <a key={link} href="#" className="transition hover:text-white">
                 {link}
               </a>
             ))}
+            <AppLink
+              to="/author/dashboard"
+              className="inline-flex items-center gap-1.5 font-bold text-amber-400 transition hover:text-white"
+            >
+              <Icon name="person_edit" className="h-3.5 w-3.5" />
+              <span>Author Portal</span>
+            </AppLink>
+            <AppLink
+              to="/admin/dashboard"
+              className="inline-flex items-center gap-1.5 font-bold text-primary transition hover:text-white"
+            >
+              <Icon name="admin_panel_settings" className="h-3.5 w-3.5" />
+              <span>Admin Panel</span>
+            </AppLink>
           </div>
           <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em]">
             <span className="h-2 w-2 rounded-full bg-white/70" />

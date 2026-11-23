@@ -48,7 +48,7 @@ function App() {
       <>
         <SettingsHeadSync />
         <Routes>
-          <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="/" element={<Navigate to="/newsroom" replace />} />
 
           <Route element={<RequireRole role="admin" />}>
             <Route path="/admin" element={<AdminLayout />}>

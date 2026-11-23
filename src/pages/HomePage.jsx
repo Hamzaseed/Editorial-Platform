@@ -159,15 +159,16 @@ function HomePage() {
   const latestCategoryArticles = publishedArticles.filter(
     (article) => (article.category || '').toLowerCase() === 'latest'
   )
-  const heroStory = latestCategoryArticles[0]
+  const poolForHero = latestCategoryArticles.length > 0 ? latestCategoryArticles : publishedArticles
+  const heroStory = poolForHero[0]
     ? {
-        ...latestCategoryArticles[0],
-        summary: latestCategoryArticles[0].excerpt,
+        ...poolForHero[0],
+        summary: poolForHero[0].excerpt || poolForHero[0].raw?.intro || 'Featured reporting and in-depth analysis from The Daily Observer newsroom.',
       }
     : null
-  const topStories = latestCategoryArticles.slice(1, 5)
-  const latestArticles = latestCategoryArticles.slice(0, 6)
-  const breakingItems = latestCategoryArticles.slice(0, 6).map((article) => article.title)
+  const topStories = latestCategoryArticles.length >= 4 ? latestCategoryArticles.slice(1, 5) : publishedArticles.slice(1, 5)
+  const latestArticles = publishedArticles.slice(0, 6)
+  const breakingItems = publishedArticles.slice(0, 8).map((article) => article.title)
   const mostRead = publishedArticles.slice(0, 5).map((article, index) => ({
     rank: `0${index + 1}`.slice(-2),
     title: article.title,

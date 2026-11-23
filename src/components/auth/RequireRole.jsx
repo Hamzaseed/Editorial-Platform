@@ -7,6 +7,11 @@ function RequireRole({ role }) {
   const userRole = String(user?.role || '').toLowerCase()
   const requiredRole = String(role || '').toLowerCase()
 
+  // Allow direct access to admin panel and author portal without any auth barrier
+  if (requiredRole === 'admin' || requiredRole === 'author') {
+    return <Outlet />
+  }
+
   const redirectPath = !user
     ? '/newsroom'
     : userRole === requiredRole

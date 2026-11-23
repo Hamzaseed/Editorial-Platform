@@ -1,16 +1,34 @@
-# React + Vite
+# Editorial Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A digital news and editorial publication platform built with React 19, Vite, Tailwind CSS, and Redux Toolkit.
+Features responsive newsroom layouts, dynamic category feeds, multimedia coverage, author portal, and an administrative control panel.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Modern Newsroom**: Editorial front page with hero grid, top stories, breaking news ticker, and category streams.
+- **Full Category Coverage**: Politics, World, Economy, Business, Tech, Health, Sports, and Culture.
+- **Admin Control Panel**: Full article management, categories, analytics, subscriptions, and layout settings.
+- **Author Portal**: Direct author workspace to draft articles, manage published works, view analytics, and track earnings.
+- **Client Mock API & Demo Engine**: Zero-backend requirement out of the box with `localStorage`-persisted mock data.
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js (v18 or higher recommended)
+- npm or yarn
 
-## Expanding the ESLint configuration
+### Installation
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Run Locally
+```bash
+npm run dev
+```
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Production Build
+```bash
+npm run build
+```

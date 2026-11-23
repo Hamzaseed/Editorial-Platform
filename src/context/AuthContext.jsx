@@ -9,14 +9,28 @@ const AUTH_TOKEN_KEY = 'auth_token'
 // 👉 Only base URL
 const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
 
+const DEFAULT_DEMO_ADMIN = {
+  id: 1,
+  first_name: 'Admin',
+  last_name: 'Editor',
+  name: 'Admin Editor',
+  email: 'admin@example.com',
+  role: 'admin',
+  avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+}
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const stored = localStorage.getItem(AUTH_USER_KEY)
-    return stored ? JSON.parse(stored) : null
+    try {
+      const stored = localStorage.getItem(AUTH_USER_KEY)
+      return stored ? JSON.parse(stored) : DEFAULT_DEMO_ADMIN
+    } catch {
+      return DEFAULT_DEMO_ADMIN
+    }
   })
 
   const [token, setToken] = useState(() => {
-    return localStorage.getItem(AUTH_TOKEN_KEY) || ''
+    return localStorage.getItem(AUTH_TOKEN_KEY) || 'mock_token_admin_default'
   })
 
   const [loading, setLoading] = useState(false)
